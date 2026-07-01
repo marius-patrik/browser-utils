@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check extension JavaScript
+        run: npm run check
+
+      - name: Check PowerShell helper
+        shell: pwsh
+        run: |
+          $errors = $null
+          [System.Management.Automation.PSParser]::Tokenize((Get-Content scripts/update-hosts.ps1 -Raw), [ref]$errors) | Out-Null
+          if ($errors) {
+            $errors | Format-List *
+            exit 1
+          }
+
+      - name: Package VSIX
+        run: npm run package
