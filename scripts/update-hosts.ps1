@@ -159,7 +159,7 @@ try {
 
     $section = @(
       $begin
-      "# Managed by patrik-local.vscode-browser-adblock"
+      "# Managed by VSC Utils"
       "# Updated $(Get-Date -Format o)"
       $entries
       $end
@@ -168,12 +168,12 @@ try {
     $next = $clean.TrimEnd() + [Environment]::NewLine + [Environment]::NewLine + $section + [Environment]::NewLine
     Set-Content -LiteralPath $hostsPath -Value $next -Encoding ascii
     ipconfig /flushdns | Out-Null
-    Write-Log "Installed VS Code Browser Adblock hosts entries: $($domains.Count)"
+    Write-Log "Installed VSC Utils hosts entries: $($domains.Count)"
     Write-Log "Restart VS Code before retesting the integrated browser."
   } else {
     Set-Content -LiteralPath $hostsPath -Value ($clean.TrimEnd() + [Environment]::NewLine) -Encoding ascii
     ipconfig /flushdns | Out-Null
-    Write-Log "Removed VS Code Browser Adblock hosts entries."
+    Write-Log "Removed VSC Utils hosts entries."
     Write-Log "Restart VS Code before retesting the integrated browser."
   }
 } catch {

@@ -1,14 +1,19 @@
 # Changelog
 
+## 0.0.4
+
+- Rename the extension and repository to VSC Utils.
+- Add `vscUtils.*` settings while keeping `browserUtils.*` as compatibility aliases.
+
 ## 0.0.3
 
-- Add `Browser Utils: Open Clipboard URL in Integrated Browser` for links copied from chat, Markdown, release notes, and other VS Code surfaces that open through VS Code's external browser path.
+- Add `VSC Utils: Open Clipboard URL in Integrated Browser` for links copied from chat, Markdown, release notes, and other VS Code surfaces that open through VS Code's external browser path.
 
 ## 0.0.2
 
 - Protect YouTube playback-critical domains from hosts-file blocking.
 - Add adblock status reporting for unsafe YouTube hosts entries.
-- Add `Browser Utils Adblock: Repair YouTube Playback` to remove accidental YouTube media hosts entries.
+- Add `VSC Utils Adblock: Repair YouTube Playback` to remove accidental YouTube media hosts entries.
 
 ## 0.0.1
 

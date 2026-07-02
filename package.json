@@ -1,18 +1,18 @@
 {
-  "name": "browser-utils",
-  "displayName": "Browser Utils",
+  "name": "vsc-utils",
+  "displayName": "VSC Utils",
   "description": "Integrated browser link routing, hosts adblock, and Explorer browser/file shortcuts.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "marius-patrik",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marius-patrik/browser-utils.git"
+    "url": "https://github.com/marius-patrik/vsc-utils.git"
   },
   "bugs": {
-    "url": "https://github.com/marius-patrik/browser-utils/issues"
+    "url": "https://github.com/marius-patrik/vsc-utils/issues"
   },
-  "homepage": "https://github.com/marius-patrik/browser-utils#readme",
+  "homepage": "https://github.com/marius-patrik/vsc-utils#readme",
   "engines": {
     "vscode": "^1.126.0"
   },
@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "check": "node --check extension.js",
-    "package": "vsce package --allow-star-activation --out browser-utils-0.0.3.vsix"
+    "package": "vsce package --allow-star-activation --out vsc-utils-0.0.4.vsix"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.6.0"
@@ -52,52 +52,52 @@
       {
         "command": "browserUtils.openNewBrowser",
         "title": "New Browser",
-        "category": "Browser Utils"
+        "category": "VSC Utils"
       },
       {
         "command": "browserUtils.openClipboardUrl",
         "title": "Open Clipboard URL in Integrated Browser",
-        "category": "Browser Utils"
+        "category": "VSC Utils"
       },
       {
         "command": "browserUtils.newTextFile",
         "title": "New Text File",
-        "category": "Browser Utils"
+        "category": "VSC Utils"
       },
       {
         "command": "browserUtils.adblock.install",
         "title": "Install/Update Hosts Blocklist",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.remove",
         "title": "Remove Hosts Blocklist",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.status",
         "title": "Show Status",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.repairYouTube",
         "title": "Repair YouTube Playback",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.copyInstallCommand",
         "title": "Copy Admin Install Command",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.openBlocklist",
         "title": "Open Blocklist",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       },
       {
         "command": "browserUtils.adblock.openLog",
         "title": "Open Log",
-        "category": "Browser Utils Adblock"
+        "category": "VSC Utils Adblock"
       }
     ],
     "menus": {
@@ -113,11 +113,25 @@
       ]
     },
     "configuration": {
-      "title": "Browser Utils",
+      "title": "VSC Utils",
       "properties": {
+        "vscUtils.handleTerminalLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open terminal links in VS Code's integrated browser."
+        },
+        "vscUtils.adblock.extraDomains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional domains to block in the Windows hosts file."
+        },
         "browserUtils.handleTerminalLinks": {
           "type": "boolean",
           "default": true,
+          "deprecationMessage": "Use vscUtils.handleTerminalLinks instead.",
           "description": "Open terminal links in VS Code's integrated browser."
         },
         "browserUtils.adblock.extraDomains": {
@@ -126,6 +140,7 @@
             "type": "string"
           },
           "default": [],
+          "deprecationMessage": "Use vscUtils.adblock.extraDomains instead.",
           "description": "Additional domains to block in the Windows hosts file."
         }
       }

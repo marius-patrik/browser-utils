@@ -25,8 +25,12 @@ function encodePowerShell(command) {
 }
 
 function getExtraDomains() {
-  const config = vscode.workspace.getConfiguration("browserUtils");
-  const extraDomains = config.get("adblock.extraDomains", []);
+  const config = vscode.workspace.getConfiguration("vscUtils");
+  const legacyConfig = vscode.workspace.getConfiguration("browserUtils");
+  const extraDomains = config.get(
+    "adblock.extraDomains",
+    legacyConfig.get("adblock.extraDomains", [])
+  );
   return Array.isArray(extraDomains) ? extraDomains.join(",") : "";
 }
 
@@ -97,7 +101,9 @@ function runStatus() {
 }
 
 function provideTerminalLinks(context) {
-  if (!vscode.workspace.getConfiguration("browserUtils").get("handleTerminalLinks", true)) {
+  const config = vscode.workspace.getConfiguration("vscUtils");
+  const legacyConfig = vscode.workspace.getConfiguration("browserUtils");
+  if (!config.get("handleTerminalLinks", legacyConfig.get("handleTerminalLinks", true))) {
     return [];
   }
 
@@ -210,34 +216,34 @@ function activate(context) {
     vscode.commands.registerCommand("browserUtils.adblock.install", () => {
       runElevated("Install");
       vscode.window.showInformationMessage(
-        "Browser Utils adblock installer opened. Approve the admin prompt, then restart VS Code."
+        "VSC Utils adblock installer opened. Approve the admin prompt, then restart VS Code."
       );
     }),
     vscode.commands.registerCommand("browserUtils.adblock.remove", () => {
       runElevated("Remove");
       vscode.window.showInformationMessage(
-        "Browser Utils adblock remover opened. Approve the admin prompt, then restart VS Code."
+        "VSC Utils adblock remover opened. Approve the admin prompt, then restart VS Code."
       );
     }),
     vscode.commands.registerCommand("browserUtils.adblock.status", async () => {
       try {
         const output = await runStatus();
-        vscode.window.showInformationMessage(output || "Browser Utils adblock status check finished.");
+        vscode.window.showInformationMessage(output || "VSC Utils adblock status check finished.");
       } catch (error) {
-        vscode.window.showErrorMessage(`Browser Utils adblock status failed: ${error.message}`);
+        vscode.window.showErrorMessage(`VSC Utils adblock status failed: ${error.message}`);
       }
     }),
     vscode.commands.registerCommand("browserUtils.adblock.repairYouTube", () => {
       runElevated("RepairYouTube");
       vscode.window.showInformationMessage(
-        "Browser Utils YouTube repair opened. Approve the admin prompt, then restart VS Code."
+        "VSC Utils YouTube repair opened. Approve the admin prompt, then restart VS Code."
       );
     }),
     vscode.commands.registerCommand("browserUtils.adblock.copyInstallCommand", async () => {
       const command = `powershell.exe ${getHelperArguments("Install", false)}`;
       await vscode.env.clipboard.writeText(command);
       vscode.window.showInformationMessage(
-        "Copied the Browser Utils adblock install command. Paste it into an Administrator PowerShell."
+        "Copied the VSC Utils adblock install command. Paste it into an Administrator PowerShell."
       );
     }),
     vscode.commands.registerCommand("browserUtils.adblock.openBlocklist", () =>
