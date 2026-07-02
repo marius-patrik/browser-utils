@@ -2,7 +2,7 @@
   "name": "browser-utils",
   "displayName": "Browser Utils",
   "description": "Integrated browser link routing, hosts adblock, and Explorer browser/file shortcuts.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "marius-patrik",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "check": "node --check extension.js",
-    "package": "vsce package --allow-star-activation --out browser-utils-0.0.1.vsix"
+    "package": "vsce package --allow-star-activation --out browser-utils-0.0.2.vsix"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.6.0"
@@ -40,6 +40,7 @@
     "onCommand:browserUtils.adblock.install",
     "onCommand:browserUtils.adblock.remove",
     "onCommand:browserUtils.adblock.status",
+    "onCommand:browserUtils.adblock.repairYouTube",
     "onCommand:browserUtils.adblock.copyInstallCommand",
     "onCommand:browserUtils.adblock.openBlocklist",
     "onCommand:browserUtils.adblock.openLog"
@@ -70,6 +71,11 @@
       {
         "command": "browserUtils.adblock.status",
         "title": "Show Status",
+        "category": "Browser Utils Adblock"
+      },
+      {
+        "command": "browserUtils.adblock.repairYouTube",
+        "title": "Repair YouTube Playback",
         "category": "Browser Utils Adblock"
       },
       {

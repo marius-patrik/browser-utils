@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2
+
+- Protect YouTube playback-critical domains from hosts-file blocking.
+- Add adblock status reporting for unsafe YouTube hosts entries.
+- Add `Browser Utils Adblock: Repair YouTube Playback` to remove accidental YouTube media hosts entries.
+
 ## 0.0.1
 
 - Initial release.

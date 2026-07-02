@@ -209,6 +209,12 @@ function activate(context) {
         vscode.window.showErrorMessage(`Browser Utils adblock status failed: ${error.message}`);
       }
     }),
+    vscode.commands.registerCommand("browserUtils.adblock.repairYouTube", () => {
+      runElevated("RepairYouTube");
+      vscode.window.showInformationMessage(
+        "Browser Utils YouTube repair opened. Approve the admin prompt, then restart VS Code."
+      );
+    }),
     vscode.commands.registerCommand("browserUtils.adblock.copyInstallCommand", async () => {
       const command = `powershell.exe ${getHelperArguments("Install", false)}`;
       await vscode.env.clipboard.writeText(command);

@@ -16,6 +16,7 @@ Browser Utils is a VS Code extension for the built-in Integrated Browser.
 - `Browser Utils Adblock: Install/Update Hosts Blocklist`
 - `Browser Utils Adblock: Remove Hosts Blocklist`
 - `Browser Utils Adblock: Show Status`
+- `Browser Utils Adblock: Repair YouTube Playback`
 - `Browser Utils Adblock: Copy Admin Install Command`
 - `Browser Utils Adblock: Open Blocklist`
 - `Browser Utils Adblock: Open Log`
@@ -31,6 +32,12 @@ C:\Windows\System32\drivers\etc\hosts
 Windows requires administrator rights to edit that file. The install/remove commands open an elevated PowerShell helper and keep it visible so errors are easy to inspect.
 
 This is DNS/hosts blocking. It cannot provide the same behavior as a Chromium extension using `webRequest`, and it cannot bypass site DRM, anti-debugging, or anti-embed checks.
+
+### YouTube
+
+YouTube video playback uses domains such as `youtube.com`, `googlevideo.com`, `ytimg.com`, and `youtubei.googleapis.com`. Blocking these at the hosts-file level can stop videos from loading. Browser Utils protects those domains during install and includes `Browser Utils Adblock: Repair YouTube Playback` to remove accidental hosts entries for them.
+
+YouTube in-stream ads are often delivered through the same playback infrastructure as normal videos. A hosts-file blocker is intentionally conservative here: it prioritizes playback over breaking video loading.
 
 ## Settings
 
