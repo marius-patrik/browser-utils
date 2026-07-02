@@ -12,6 +12,7 @@ Browser Utils is a VS Code extension for the built-in Integrated Browser.
 ## Commands
 
 - `Browser Utils: New Browser`
+- `Browser Utils: Open Clipboard URL in Integrated Browser`
 - `Browser Utils: New Text File`
 - `Browser Utils Adblock: Install/Update Hosts Blocklist`
 - `Browser Utils Adblock: Remove Hosts Blocklist`
@@ -43,6 +44,10 @@ YouTube in-stream ads are often delivered through the same playback infrastructu
 
 - `browserUtils.handleTerminalLinks`: route terminal URLs to the Integrated Browser.
 - `browserUtils.adblock.extraDomains`: extra domains to add to the managed hosts block.
+
+## Link Handling Limits
+
+Browser Utils handles terminal links directly. Some VS Code surfaces, including chat output, Markdown previews, and extension release notes, use VS Code's external browser opener instead. For those links, copy the URL and run `Browser Utils: Open Clipboard URL in Integrated Browser`.
 
 ## Development
 

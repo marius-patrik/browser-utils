@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.3
+
+- Add `Browser Utils: Open Clipboard URL in Integrated Browser` for links copied from chat, Markdown, release notes, and other VS Code surfaces that open through VS Code's external browser path.
+
 ## 0.0.2
 
 - Protect YouTube playback-critical domains from hosts-file blocking.

@@ -123,6 +123,23 @@ async function openIntegratedBrowser(url) {
   }
 }
 
+async function openClipboardUrl() {
+  const clipboard = (await vscode.env.clipboard.readText()).trim();
+  const value =
+    /^https?:\/\//i.test(clipboard)
+      ? clipboard
+      : await vscode.window.showInputBox({
+          prompt: "URL to open in the Integrated Browser",
+          value: clipboard,
+          validateInput(input) {
+            return /^https?:\/\//i.test(input.trim()) ? undefined : "Enter an http or https URL.";
+          },
+        });
+
+  if (!value) return;
+  await openIntegratedBrowser(value.trim());
+}
+
 async function getTargetFolder(resource) {
   if (resource?.scheme === "file") {
     try {
@@ -188,6 +205,7 @@ function activate(context) {
       handleTerminalLink: link => openIntegratedBrowser(link.url),
     }),
     vscode.commands.registerCommand("browserUtils.openNewBrowser", () => openIntegratedBrowser()),
+    vscode.commands.registerCommand("browserUtils.openClipboardUrl", openClipboardUrl),
     vscode.commands.registerCommand("browserUtils.newTextFile", newTextFile),
     vscode.commands.registerCommand("browserUtils.adblock.install", () => {
       runElevated("Install");

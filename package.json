@@ -2,7 +2,7 @@
   "name": "browser-utils",
   "displayName": "Browser Utils",
   "description": "Integrated browser link routing, hosts adblock, and Explorer browser/file shortcuts.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "marius-patrik",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "check": "node --check extension.js",
-    "package": "vsce package --allow-star-activation --out browser-utils-0.0.2.vsix"
+    "package": "vsce package --allow-star-activation --out browser-utils-0.0.3.vsix"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.6.0"
@@ -36,6 +36,7 @@
   "activationEvents": [
     "onStartupFinished",
     "onCommand:browserUtils.openNewBrowser",
+    "onCommand:browserUtils.openClipboardUrl",
     "onCommand:browserUtils.newTextFile",
     "onCommand:browserUtils.adblock.install",
     "onCommand:browserUtils.adblock.remove",
@@ -51,6 +52,11 @@
       {
         "command": "browserUtils.openNewBrowser",
         "title": "New Browser",
+        "category": "Browser Utils"
+      },
+      {
+        "command": "browserUtils.openClipboardUrl",
+        "title": "Open Clipboard URL in Integrated Browser",
         "category": "Browser Utils"
       },
       {
